@@ -1,6 +1,5 @@
 use byteorder::{BigEndian,ReadBytesExt,ByteOrder};
-use macros;
-use traits::{DefaultHeader,GenericNSecs,DefaultFlowRecord};
+use traits::{DefaultHeader,GenericNSecs,DefaultFlowRecord,v7v8FlowRecord};
 
 #[allow(dead_code)]
 const HEADER_SIZE:usize = 24;
@@ -64,6 +63,7 @@ struct FlowRecord {
 	flags: u16,
 	router_sc: [u8;4],
 }
+#[allow(dead_code)]
 impl FlowRecord {
 	pub fn new(buf: &[u8;RECORD_SIZE]) -> FlowRecord {
 		FlowRecord {
@@ -109,4 +109,7 @@ impl FlowRecord {
 }
 impl DefaultFlowRecord for FlowRecord {
 	generic_flowrecord_fn!();
+}
+impl v7v8FlowRecord for FlowRecord {
+	flowrecord_v7_v8_fn!();
 }

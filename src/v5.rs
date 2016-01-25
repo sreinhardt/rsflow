@@ -1,5 +1,4 @@
 use byteorder::{BigEndian,ReadBytesExt,ByteOrder};
-use macros;
 use traits::{DefaultHeader,v5v6Header,GenericNSecs,DefaultFlowRecord};
 
 #[allow(dead_code)]
@@ -70,6 +69,7 @@ struct FlowRecord {
 	//*
 	pad2: u16,
 }
+#[allow(dead_code)]
 impl FlowRecord {
 	pub fn new(buf: &[u8;RECORD_SIZE]) -> FlowRecord {
 		FlowRecord {
@@ -106,6 +106,9 @@ impl FlowRecord {
 			dst_mask: u8::from_be(buf[45]),
 			pad2: u16::from_be(BigEndian::read_u16(&buf[46..47])),
 		}
+	}
+	pub fn get_pad2(&self) -> u16 {
+		self.pad2
 	}
 }
 impl DefaultFlowRecord for FlowRecord {

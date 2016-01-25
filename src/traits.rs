@@ -6,6 +6,7 @@ pub trait DefaultHeader {
 	fn get_secs(&self) -> u32;
 	fn get_sequence(&self) -> u32;
 }
+#[allow(non_camel_case_types)]
 pub trait v5v6Header {
 	fn get_eng_type(&self) -> u8;
 	fn get_eng_id(&self) -> u8;
@@ -35,4 +36,9 @@ pub trait DefaultFlowRecord {
 	fn get_dst_as(&self) -> u16;
 	fn get_src_mask(&self) -> u8;
 	fn get_dst_mask(&self) -> u8;
+}
+#[allow(non_camel_case_types)]
+pub trait v7v8FlowRecord {
+	fn get_flags(&self) -> u16;
+	fn get_router_sc(&self) -> [u8;4];
 }

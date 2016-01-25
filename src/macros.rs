@@ -119,3 +119,13 @@ macro_rules! generic_flowrecord_fn {
 		}
 	}
 }
+macro_rules! flowrecord_v7_v8_fn {
+	() => {
+		fn get_flags(&self) -> u16 {
+			self.flags
+		}
+		fn get_router_sc(&self) -> [u8;4] {
+			self.router_sc
+		}
+	}
+}
