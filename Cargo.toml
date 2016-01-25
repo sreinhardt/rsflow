@@ -1,0 +1,8 @@
+[package]
+name = "rsflow"
+version = "0.0.1"
+authors = ["Spenser Reinhardt <spenserreinhardt@gmail.com>"]
+
+[dependencies]
+bufstream = "0.1"
+byteorder = "0.4.2"
