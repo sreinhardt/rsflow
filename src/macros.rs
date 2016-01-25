@@ -32,7 +32,6 @@ macro_rules! generic_nsecs_o {
 		unixnSecs: u32::from_be(BigEndian::read_u32(&buf[12..15])),
 	}
 }
-
 macro_rules! generic_nsecs_fn {
 	() => {
 		fn get_nsecs(&self) -> u32 {
@@ -58,6 +57,65 @@ macro_rules! headers_5_6_fn {
 		}
 		fn get_sampling(&self) -> u16 {
 			self.sampling_int
+		}
+	}
+}
+
+macro_rules! generic_flowrecord_fn {
+	() => {
+		fn get_src_addr_4(&self) -> [u8;4] {
+			self.ipv4_src_addr
+		}
+		fn get_dst_addr_4(&self) -> [u8;4] {
+			self.ipv4_dst_addr
+		}
+		fn get_next_hop(&self) -> [u8;4] {
+			self.next_hop
+		}
+		fn get_snmp_in(&self) -> u16 {
+			self.snmp_in
+		}
+		fn get_snmp_out(&self) -> u16 {
+			self.snmp_out
+		}
+		fn get_pkt_count(&self) -> u32 {
+			self.pkt_count
+		}
+		fn get_byte_count(&self) -> u32 {
+			self.byte_count
+		}
+		fn get_start_time(&self) -> u32 {
+			self.start_time
+		}
+		fn get_end_time(&self) -> u32 {
+			self.end_time
+		}
+		fn get_src_port(&self) -> u16 {
+			self.src_port
+		}
+		fn get_dst_port(&self) -> u16 {
+			self.dst_port
+		}
+		fn get_tcp_flags(&self) -> u8 {
+			self.tcp_flags
+		}
+		fn get_proto(&self) -> u8 {
+			self.proto
+		}
+		fn get_tos(&self) -> u8 {
+			self.tos
+		}
+		fn get_src_as(&self) -> u16 {
+			self.src_as
+		}
+		fn get_dst_as(&self) -> u16 {
+			self.dst_as
+		}
+		fn get_src_mask(&self) -> u8 {
+			self.src_mask
+		}
+		fn get_dst_mask(&self) -> u8 {
+			self.dst_mask
 		}
 	}
 }
