@@ -6,20 +6,19 @@ const HEADER_SIZE:usize = 24;
 #[allow(dead_code)]
 const RECORD_SIZE:usize = 52;
 
-#[allow(dead_code)]
-struct FlowHeader {
+pub struct FlowHeader {
 	version: u16,
 	count: u16,
 	sys_uptime: u32,
 	unix_secs: u32,
 	unix_nsecs: u32,
 	sequence: u32,
-	//*
+	#[allow(dead_code)]
 	reserved: [u8;4],
 }
 #[allow(dead_code)]
 impl FlowHeader {
-	pub fn new(buf: &[u8;HEADER_SIZE]) -> FlowHeader {
+	pub fn new(buf: &[u8]) -> FlowHeader {
 		FlowHeader {
 			version: u16::from_be(BigEndian::read_u16(&buf[0..1])),
 			count: u16::from_be(BigEndian::read_u16(&buf[2..3])),
