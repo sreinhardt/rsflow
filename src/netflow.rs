@@ -1,3 +1,4 @@
+use std::result;
 use std::io::prelude::*;
 use byteorder::{BigEndian,ReadBytesExt,ByteOrder};
 use bufstream::BufStream;
@@ -6,6 +7,8 @@ use v6;
 use v7;
 use v8;
 use generic::PacketHeader;
+
+pub type Result<T> = result::Result<T,NFE>;
 
 #[allow(dead_code)]
 pub enum NFE {
@@ -29,8 +32,8 @@ impl<S: Read + Write> NetFlow<S> {
 		}
 	}
 	#[allow(unused_assignments)]
-	pub fn get_flow_header(&mut self) -> Result<PacketHeader,NFE> {
-		let mut rst: Result<PacketHeader,NFE> = Err(NFE::GFHerror);
+	pub fn get_flow_header(&mut self) -> Result<PacketHeader> {
+		let mut rst: Result<PacketHeader> = Err(NFE::GFHerror);
 		{
 			let buf = match self.stream.fill_buf() {
 				Ok(b) => b,
